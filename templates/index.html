@@ -16,7 +16,7 @@
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
           <a class="navbar-brand" href="{{ url_for('index_view') }}">            
-            <img src="static/img/logo.svg" height="50" class="" alt="">                       
+            <img src="{{ url_for('static', filename='img/logo.svg')}}" height="50" class="" alt="">                       
           </a>  
           <div class="d-flex justify-content-end">
             <ul class="nav nav-pills">
@@ -58,7 +58,7 @@
             </p>
           </div>
           <div class="col-12 col-lg-5">
-            <img class="img-fluid mx-auto d-block" src="static/img/illustration.png" alt="">
+            <img class="img-fluid mx-auto d-block" src="{{ url_for('static', filename='img/illustration.png')}}" alt="">
           </div>
         </div>
       </section>

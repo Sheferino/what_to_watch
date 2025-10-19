@@ -37,5 +37,11 @@ def add_opinion():
     return render_template('add_opinion.html')
 
 
+@app.route('/opinions/<int:id>')
+def opinion_view(id):
+    opinion = Opinion.query.get_or_404(id)
+    return render_template('opinion.html', opinion=opinion)
+
+
 if __name__ == '__main__':
     app.run()

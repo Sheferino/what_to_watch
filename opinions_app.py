@@ -26,6 +26,7 @@ class Opinion(db.Model):
     source = db.Column(db.String(256))
     timestamp = db.Column(db.DateTime, index=True,
                           default=datetime.datetime.now(datetime.timezone.utc))
+    added_by = db.Column(db.String(64))
 
 
 class OpinionForm(FlaskForm):

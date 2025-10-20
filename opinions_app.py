@@ -1,6 +1,8 @@
 import datetime
 from random import randrange
 
+import csv
+import click
 from flask import Flask, abort, flash, render_template, redirect, url_for
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
@@ -91,6 +93,21 @@ def internal_error_view(error):
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template('404.html'), 404
+
+
+@app.cli.command('load_csv')
+def load_csv():
+    """Функция загрузки мнений из csv в БД
+    """
+    counter = 0
+    with open('opinions.csv', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            opinion = Opinion(**row)
+            db.session.add(opinion)
+            counter += 1
+        db.session.commit()
+    click.echo(f'Загружено {counter} записей!')
 
 
 if __name__ == '__main__':
